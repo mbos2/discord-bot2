@@ -1,16 +1,40 @@
 {
-    "name": "node-none-blank",
-    "version": "1.0.0",
-    "description": "Node.js blank template",
-    "author": "",
-    "main": "server.js",
-    "scripts": {
-      "start": "node server.js",
-      "dev": "nodemon -I -q node server.js"
-    },
-    "dependencies": {
-      "express": "^4.16.1",
-      "nodemon": "^2.0.2",
-      "dotenv": "^16.0.3"
-    }
-  }
+  "name": "w3schools-discord-bot",
+  "version": "1.4.1",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "fix": "node w3fix &&",
+    "build": "robo build",
+    "deploy": "robo deploy",
+    "dev": "robo dev",
+    "doctor": "robo doctor",
+    "invite": "robo invite",
+    "lint": "npm lint:eslint && npm lint:style",
+    "lint:eslint": "eslint . --ext js,jsx,ts,tsx",
+    "lint:style": "prettier --write .",
+    "start": "robo start",
+    "mbuild": "node migration.js && robo build"
+  },
+  "dependencies": {
+    "@roboplay/robo.js": "^0.9.4",
+    "axios": "^1.5.0",
+    "better-sqlite3": "^8.4.0",
+    "cheerio": "^1.0.0-rc.12",
+    "cron": "^2.4.1",
+    "cron-schedule": "^4.0.0",
+    "croner": "^7.0.1",
+    "discord.js": "^14.11.0",
+    "dotenv": "^16.0.3",
+    "googlethis": "^1.8.0",
+    "i": "^0.3.7",
+    "npm": "^9.8.1",
+    "toad-scheduler": "^3.0.0"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.59",
+    "@types/node": "^20.2.1",
+    "typescript": "^5.0.4"
+  },
+  "type": "module"
+}

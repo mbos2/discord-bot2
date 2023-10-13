@@ -1,48 +1,69 @@
-# 👋 Hello developer!
 
-This project contains a basic node express application to get you started. Check our [tutorials for frontend development](https://www.w3schools.com/where_to_start.asp) to learn the basics of [HTML](https://www.w3schools.com/html/default.asp), [CSS](https://www.w3schools.com/css/default.asp) and [JavaScript](https://www.w3schools.com/js/default.asp). 🦄
 
-While you're in the editor working, the site will be running `npm run dev`, which runs Nodemon, and changes to JS files or environment will restart the application. Once you close the editor, the container runs `npm run start`.
+Welcome to your fresh **[Robo.js](https://github.com/Wave-Play/robo)** project! A Node framework for Discord.js bots, Robo.js handles boilerplate, automates command registration, simplifies Typescript support, and boasts "Sage" for easy interactions. Empowered by a dynamic plugin system, your robo thrives on RoboPlay or any Node-supporting host.
 
-## Knowledge requirements
+Let's get started on your journey to create the perfect Discord bot!
 
-To be able to fully understand and modify this template to your needs, there are several things you should know (or learn):
 
-- [HTML](https://www.w3schools.com/html/default.asp)
-- [CSS](https://www.w3schools.com/css/default.asp)
-- [JavaScript](https://www.w3schools.com/js/default.asp)
-- [Node.js](https://www.w3schools.com/nodejs/default.asp)
-- [Express.js](https://expressjs.com/)
 
-## Warning - environment variables
+## Running 🏃‍♂️
 
-Do not change SQLITE_DB as it is generated. If you change it the space will not behave as predicted.
+To run your robo, simply use the `robo dev` command like so:
 
-## 🔨 What's next?
+```bash
+npm run dev
+```
 
-Customize this template to make it your own.  
-Remember to make your layout responsive - if you want your site to look good on smaller screens like mobile.
+No need to re-run when you make changes. Your robo will automatically restart! 🔄
 
-## 🎨 Where to find everything?
+Ready to deploy and keep your robo online at all times? Check out the [Deployment Documentation](<[#deployment](https://github.com/Wave-Play/robo/blob/main/docs/hosting.md)>).
 
-You can find static resources in the folder `public`.
+## Developing 🏗️
 
-### Database
+Create new slash commands by making a new file under the `/src/commands` directory with an exported default function. The file's name becomes the command's name. You can either use the `interaction` parameter or return the result to let Sage handle it for you. For more info on commands, see the [Discord.js Documentation](https://discord.js.org/#/docs/main/stable/general/welcome).
 
-Dynamic spaces can use [SQLite](https://www.sqlite.org/docs.html) database.  
-The database file is called `database.db`. It is placed inside the `w3s-dynamic-storage` folder.  
-SQLite connection path to the database is `w3s-dynamic-storage/database.db` which you can use to connect to the SQLite database programmatically.   
+Commands will be automatically registered with Discord when needed, but you can force it by running `robo build -f`.
 
----  
-**Do not change the `w3s-dynamic-storage` folder name or `database.db` file name!**  
-**By changing the `w3s-dynamic-storage` folder name or `database.db` file name, you risk the space not working properly.**
+To listen to new events, create a file named after the event in `/src/events`. For example, `typingStart.js` will notify you when someone starts typing. You can stack multiple files for the same event by making a directory named after the event. Files inside it can be named whatever you want. For example:
 
-## 🔨 Please note
-For now files created/uploaded or edited from within the terminal view will not be backed up or synced. 
+```
+- src
+  - events
+    - typingStart
+      - your-file.js
+      - another.js
+```
 
-## ⛑ Need support?
+## Debugging 🐞
 
-[Join our Discord community](https://discord.gg/6Z7UaRbUQM) and ask questions in the **#spaces-general** channel to get your space on the next level.  
-[Send us a ticket](https://support.w3schools.com/hc/en-gb) if you have any technical issues with Spaces.
+Got bugs? No biggie! Robo.js has your back with nifty built-in debugging magic. During dev mode, Robo will provide you with error information, stack traces, interactive logs, and even a sneak peek at the exact code that caused the issue!
 
-Happy coding!
+To get started, set up a personal Discord server for your Robo to hang out in and add your server's ID as a `DISCORD_GUILD_ID` env variable. Doing this unlocks the fab debugging features, plus the super-handy `/dev` command that gives you quick access to logs, system info, and more.
+
+For a more comprehensive guide, take a look at the [Debugging Documentation](https://github.com/Wave-Play/robo/blob/main/docs/advanced/debugging.md). 🕵️‍♀️🔍
+
+## Configuration ⚙️
+
+Robo.js automatically handles creating your Discord.js `Client` instance, but you can still configure what gets passed to it using the `.config/robo.mjs` file. Use it to add more intents or change the behavior of other Robo.js features such as Sage, default commands, timeouts, and more.
+
+The `.env` file contains your `DISCORD_TOKEN` and `DISCORD_CLIENT_ID`. Keep these secret. You can get these values from the [Discord Developer Portal](https://discord.com/developers/applications).
+
+## Plugins 🔌
+
+Robo.js has a powerful plugin system. Install plugins as NPM packages like this:
+
+```bash
+npm install @roboplay/plugin-gpt
+```
+
+Replace `@roboplay/plugin-gpt` with the plugin's package name. Next, add the plugin to your Robo's configuration file, typically located at `.config/robo.mjs`.
+
+You can also turn your existing robo into a plugin using `robo build plugin` and uploading it to NPM via `npm publish`. Just be careful and make sure you're not including sensitive data such as your `.env` file.
+
+## Deployment 🚀
+
+Run the `robo deploy` command to automatically deploy to **[RoboPlay](https://roboplay.dev)** for free once you're ready to keep your robo online 24/7. You can also self-host your robo anywhere that supports Node. Just make sure to run the `robo build` command followed by `robo start`.
+
+You can also run `robo invite` (beta) to automatically generate a server invite to test it yourself or show it off! You can also use the [Discord Developer Portal](https://discord.com/developers/applications) to generate an invite.
+
+Happy coding! 🎉
